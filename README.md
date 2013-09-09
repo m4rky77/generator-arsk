@@ -1,16 +1,25 @@
-# generator-arsk [![Build Status](https://secure.travis-ci.org/Swoop/generator-arsk.png?branch=master)](https://travis-ci.org/Swoop/generator-arsk)
+# generator-arsk
 
-A generator for [Yeoman](http://yeoman.io).
+An AngularJS/RequireJS Starter Kit generator for [Yeoman](http://yeoman.io).
 
 
 ## Getting Started
 
+### What is AngularJS/RequireJS Starter Kit (ARSK)
+
+ARSK is a modular AngularJS starter kit based on RequireJS.
+
+This starter kit is a bundle with :
+* AngularJS
+* RequireJS 
+* RequireJS I18N
+* Bootstrap
+* UI Bootstrap
+* Grunt
+* jQuery
+
+
 ### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
@@ -33,6 +42,16 @@ Finally, initiate the generator:
 
 ```
 $ yo arsk
+```
+
+Add a page:
+```
+$ yo arsk:page mypage
+```
+
+Add a module:
+```
+$ yo arsk:module mymodule
 ```
 
 ### Getting To Know Yeoman

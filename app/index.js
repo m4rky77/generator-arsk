@@ -102,7 +102,7 @@ ArskGenerator.prototype.app = function app() {
     'app/js/libs/requirejs/i18n-2.0.4.js',
     'app/js/libs/requirejs/require-2.1.8.js',
     'app/js/libs/underscorejs/underscore-1.5.1.js',
-    'app/js/app/App.js',
+    'app/js/app/app.js',
     'app/js/app/filters/i18nFilter.js',
     'app/js/app/modules/header/controllers/headerController.js',
     'app/js/app/modules/header/directives/headerDirective.js',

@@ -11,6 +11,8 @@ appRequire = require.config({
     bootstrap:{
       deps: ['jquery']
     },
+    <% } %>
+    <% if(hasJquery) { %>
     jquery: {
       exports: "$"
     }
@@ -19,17 +21,18 @@ appRequire = require.config({
   },
 
   paths: {
-    // Major libraries
-    i18n :              '/js/libs/requirejs/i18n-2.0.4',
-    underscore:         '/js/libs/underscorejs/underscore-1.5.1',
-    angular:            '/js/libs/angularjs/angular-1.0.7',
+    // Librairies bower
+    underscore:         '/js/vendor/underscore/underscore',
+    angular:            '/js/vendor/angular/angular',
     <% if (hasBootstrap && hasJquery) { %>
-    bootstrap:          '/js/libs/bootstrap/js/bootstrap',
-    jquery:             '/js/libs/jquery/jquery-1.10.2',
+    bootstrap:          '/js/vendor/bootstrap/dist/js/bootstrap',
     <% } %>
-     <% if (hasUiBootstrap) { %>
-    uibootstrap:        '/js/libs/ui-bootstrap/ui-bootstrap-0.5.0',
+    <% if(hasJquery) { %>
+    jquery:             '/js/vendor/jquery/jquery',
     <% } %>
+    i18n :              '/js/vendor/requirejs-i18n/i18n',
+    
+    // Librairies incluse
     Console:            '/js/libs/console/console'
    
   },

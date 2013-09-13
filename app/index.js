@@ -8,7 +8,7 @@ var ArskGenerator = module.exports = function ArskGenerator(args, options, confi
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    this.npmInstall();
+    this.installDependencies({ skipInstall: options['skip-install'] });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -38,10 +38,6 @@ ArskGenerator.prototype.askFor = function askFor() {
       name: 'Bootstrap',
       value: 'bootstrap',
       checked: true
-    }, {
-      name: 'UI Bootstrap',
-      value: 'uiBootstrap',
-      checked: true
     }]
   }];
 
@@ -53,7 +49,6 @@ ArskGenerator.prototype.askFor = function askFor() {
     this.hasGruntServer = hasFeature('gruntServer');
     this.hasJquery = hasFeature('jQuery');
     this.hasBootstrap = hasFeature('bootstrap');
-    this.hasUiBootstrap = hasFeature('uiBootstrap');
 
     cb();
   }.bind(this));
@@ -67,10 +62,7 @@ ArskGenerator.prototype.app = function app() {
     'app/images',
     'app/js',
     'app/js/libs',
-    'app/js/libs/angularjs',
     'app/js/libs/console',
-    'app/js/libs/requirejs',
-    'app/js/libs/underscorejs',
     'app/js/app',
     'app/js/app/filters',
     'app/js/app/modules',
@@ -96,12 +88,8 @@ ArskGenerator.prototype.app = function app() {
     'app/css/styles.css',
     'app/css/theme.css',
     'app/js/main.js',
-    'app/js/libs/angularjs/angular-1.0.7.js',
     'app/js/libs/console/console-0.4.min.js',
     'app/js/libs/console/console.js',
-    'app/js/libs/requirejs/i18n-2.0.4.js',
-    'app/js/libs/requirejs/require-2.1.8.js',
-    'app/js/libs/underscorejs/underscore-1.5.1.js',
     'app/js/app/app.js',
     'app/js/app/filters/i18nFilter.js',
     'app/js/app/modules/header/controllers/headerController.js',
@@ -117,47 +105,13 @@ ArskGenerator.prototype.app = function app() {
     'app/js/app/services/alertService.js'
   ];
 
-  if (this.hasJquery) {
-    folders.push('app/js/libs/jquery');
-    
-    files.push('app/js/libs/jquery/jquery-1.10.2.js');
-  }
-
-  if (this.hasUiBootstrap) {
-    folders.push('app/js/libs/ui-bootstrap');
-    
-    files.push('app/js/libs/ui-bootstrap/ui-bootstrap-0.5.0.js');
-    files.push('app/js/libs/ui-bootstrap/ui-bootstrap-tpls-0.5.0.js');
-  }
- 
-
-  if (this.hasBootstrap) {
-    folders.push('app/js/libs/bootstrap');
-    folders.push('app/js/libs/bootstrap/css');
-    folders.push('app/js/libs/bootstrap/fonts');
-    folders.push('app/js/libs/bootstrap/js');
-
-    files.push('app/js/libs/bootstrap/css/bootstrap-theme.css');
-    files.push('app/js/libs/bootstrap/css/bootstrap.css');
-    files.push('app/js/libs/bootstrap/fonts/glyphicons-halflings-regular.eot');
-    files.push('app/js/libs/bootstrap/fonts/glyphicons-halflings-regular.svg');
-    files.push('app/js/libs/bootstrap/fonts/glyphicons-halflings-regular.ttf');
-    files.push('app/js/libs/bootstrap/fonts/glyphicons-halflings-regular.woff');
-    files.push('app/js/libs/bootstrap/js/bootstrap.js');
-  }
-
   var self = this;
   folders.forEach(function (folder) {
     self.mkdir(folder);
   });
 
   files.forEach(function (file) {
-    if (file === 'app/js/libs/underscorejs/underscore-1.5.1.js') {
-       self.copy(file, file);
-    } else {
-       self.template(file, file);
-    }
-   
+    self.template(file, file);
   });
 
 };
@@ -167,6 +121,8 @@ ArskGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('gitignore', '.gitignore');
   this.copy('jshintrc', '.jshintrc');
   this.copy('package.json', 'package.json');
+  this.copy('bower.json', 'bower.json');
+  this.copy('bowerrc', '.bowerrc');
 
   if(this.hasGruntServer){
     this.copy('GruntFile.js', 'GruntFile.js');

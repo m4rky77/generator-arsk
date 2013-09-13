@@ -14,7 +14,6 @@ This starter kit is a bundle with :
 * RequireJS 
 * RequireJS I18N
 * Bootstrap
-* UI Bootstrap
 * Grunt
 * jQuery
 
@@ -58,6 +57,14 @@ Run application:
 ```
 $ grunt server
 ```
+### Update or change dependencies
+Arsk use Bower to manage dependencies.
+
+Download and install dependencies:
+```
+$ bower install
+```
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
